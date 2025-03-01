@@ -3,7 +3,6 @@
 import { useState } from "react";
 import { StrategyOption, StrategyType } from "@/app/types/project.types";
 import { strategies } from "@/app/lib/strategies";
-import { motion } from "framer-motion";
 
 interface StrategySelectorProps {
   selectedStrategy: StrategyType;
@@ -40,20 +39,15 @@ export function StrategySelector({
       </div>
       
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-        {displayedStrategies.map((strategy, index) => (
-          <motion.div
+        {displayedStrategies.map((strategy) => (
+          <div
             key={strategy.id}
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.3, delay: index * 0.05 }}
             className={`border rounded-lg overflow-hidden cursor-pointer transition-all ${
               selectedStrategy === strategy.id
                 ? "border-orange-500 ring-1 ring-orange-500 bg-orange-50 dark:bg-orange-900/10"
                 : "border-gray-200 dark:border-gray-700 hover:border-orange-300 dark:hover:border-orange-700 hover:shadow-md"
             }`}
             onClick={() => onStrategyChange(strategy.id)}
-            whileHover={{ y: -2 }}
-            whileTap={{ scale: 0.98 }}
           >
             {selectedStrategy === strategy.id && (
               <div className="h-1 bg-orange-500 w-full"></div>
@@ -82,7 +76,7 @@ export function StrategySelector({
                 </ul>
               </div>
             </div>
-          </motion.div>
+          </div>
         ))}
       </div>
     </div>

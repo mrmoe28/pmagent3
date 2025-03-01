@@ -1,82 +1,36 @@
 import { Button } from "@/app/components/ui/button";
 import Link from "next/link";
-import { motion } from "framer-motion";
-
-const fadeIn = {
-  hidden: { opacity: 0, y: 20 },
-  visible: { 
-    opacity: 1, 
-    y: 0,
-    transition: { duration: 0.6 }
-  }
-};
-
-const staggerContainer = {
-  hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: {
-      staggerChildren: 0.2
-    }
-  }
-};
 
 export default function Home() {
   return (
     <div className="min-h-screen bg-gradient-to-b from-white to-gray-50 dark:from-gray-900 dark:to-gray-800">
       <main className="container mx-auto px-4 py-16">
         {/* Hero Section */}
-        <motion.div 
-          className="flex flex-col items-center text-center mb-16"
-          initial="hidden"
-          animate="visible"
-          variants={staggerContainer}
-        >
-          <motion.div 
-            className="w-20 h-20 bg-orange-500 rounded-2xl mb-6 flex items-center justify-center shadow-lg"
-            variants={fadeIn}
-          >
+        <div className="flex flex-col items-center text-center mb-16">
+          <div className="w-20 h-20 bg-orange-500 rounded-2xl mb-6 flex items-center justify-center shadow-lg">
             <span className="text-white text-3xl font-bold">P3</span>
-          </motion.div>
+          </div>
           
-          <motion.h1 
-            className="text-5xl font-bold mb-4 bg-clip-text text-transparent bg-gradient-to-r from-orange-500 to-orange-600"
-            variants={fadeIn}
-          >
+          <h1 className="text-5xl font-bold mb-4 bg-clip-text text-transparent bg-gradient-to-r from-orange-500 to-orange-600">
             Welcome to PmAgent3
-          </motion.h1>
+          </h1>
           
-          <motion.p 
-            className="text-xl text-gray-600 dark:text-gray-300 max-w-2xl"
-            variants={fadeIn}
-          >
+          <p className="text-xl text-gray-600 dark:text-gray-300 max-w-2xl">
             A modern project management platform for creating strategic plans and standard operating procedures
-          </motion.p>
+          </p>
           
-          <motion.div 
-            className="mt-8"
-            variants={fadeIn}
-          >
+          <div className="mt-8">
             <Link href="/projects">
               <Button className="bg-orange-500 hover:bg-orange-600 text-white px-8 py-3 rounded-lg text-lg shadow-md hover:shadow-lg transition-all">
                 Get Started
               </Button>
             </Link>
-          </motion.div>
-        </motion.div>
+          </div>
+        </div>
         
         {/* Features Section */}
-        <motion.div 
-          className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto"
-          initial="hidden"
-          animate="visible"
-          variants={staggerContainer}
-        >
-          <motion.div 
-            className="bg-white dark:bg-gray-800 rounded-xl shadow-xl overflow-hidden hover:shadow-2xl transition-shadow duration-300"
-            variants={fadeIn}
-            whileHover={{ y: -5 }}
-          >
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+          <div className="bg-white dark:bg-gray-800 rounded-xl shadow-xl overflow-hidden hover:shadow-2xl transition-shadow duration-300">
             <div className="h-2 bg-orange-500"></div>
             <div className="p-8">
               <div className="w-12 h-12 bg-orange-100 dark:bg-orange-900 rounded-lg flex items-center justify-center mb-4">
@@ -94,13 +48,9 @@ export default function Home() {
                 </Button>
               </Link>
             </div>
-          </motion.div>
+          </div>
 
-          <motion.div 
-            className="bg-white dark:bg-gray-800 rounded-xl shadow-xl overflow-hidden hover:shadow-2xl transition-shadow duration-300"
-            variants={fadeIn}
-            whileHover={{ y: -5 }}
-          >
+          <div className="bg-white dark:bg-gray-800 rounded-xl shadow-xl overflow-hidden hover:shadow-2xl transition-shadow duration-300">
             <div className="h-2 bg-orange-500"></div>
             <div className="p-8">
               <div className="w-12 h-12 bg-orange-100 dark:bg-orange-900 rounded-lg flex items-center justify-center mb-4">
@@ -118,8 +68,8 @@ export default function Home() {
                 </Button>
               </Link>
             </div>
-          </motion.div>
-        </motion.div>
+          </div>
+        </div>
         
         {/* Technologies Section */}
         <div className="mt-24 text-center">

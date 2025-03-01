@@ -5,7 +5,6 @@ import { Button } from "@/app/components/ui/button";
 import { strategies } from "@/app/lib/strategies";
 import { ProjectInput, StrategyType } from "@/app/types/project.types";
 import { StrategySelector } from "./StrategySelector";
-import { motion } from "framer-motion";
 
 interface ProjectFormProps {
   onSubmit: (projectInput: ProjectInput) => void;
@@ -34,11 +33,7 @@ export function ProjectForm({ onSubmit, isLoading }: ProjectFormProps) {
   return (
     <form onSubmit={handleSubmit} className="space-y-8">
       <div className="space-y-6">
-        <motion.div
-          initial={{ opacity: 0, y: 10 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.3 }}
-        >
+        <div>
           <label htmlFor="title" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
             Project Title
           </label>
@@ -51,13 +46,9 @@ export function ProjectForm({ onSubmit, isLoading }: ProjectFormProps) {
             className="w-full px-4 py-3 border border-gray-200 dark:border-gray-700 rounded-lg shadow-sm focus:ring-orange-500 focus:border-orange-500 dark:bg-gray-800 dark:text-white transition-colors"
             placeholder="Enter project title"
           />
-        </motion.div>
+        </div>
         
-        <motion.div
-          initial={{ opacity: 0, y: 10 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.3, delay: 0.1 }}
-        >
+        <div>
           <label htmlFor="description" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
             Project Description
           </label>
@@ -70,13 +61,9 @@ export function ProjectForm({ onSubmit, isLoading }: ProjectFormProps) {
             className="w-full px-4 py-3 border border-gray-200 dark:border-gray-700 rounded-lg shadow-sm focus:ring-orange-500 focus:border-orange-500 dark:bg-gray-800 dark:text-white transition-colors"
             placeholder="Describe your project in detail"
           />
-        </motion.div>
+        </div>
         
-        <motion.div
-          initial={{ opacity: 0, y: 10 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.3, delay: 0.2 }}
-        >
+        <div>
           <label htmlFor="outcome" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
             Desired Outcome
           </label>
@@ -89,27 +76,18 @@ export function ProjectForm({ onSubmit, isLoading }: ProjectFormProps) {
             className="w-full px-4 py-3 border border-gray-200 dark:border-gray-700 rounded-lg shadow-sm focus:ring-orange-500 focus:border-orange-500 dark:bg-gray-800 dark:text-white transition-colors"
             placeholder="What specific outcomes are you trying to achieve with this project?"
           />
-        </motion.div>
+        </div>
         
-        <motion.div
-          initial={{ opacity: 0, y: 10 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.3, delay: 0.3 }}
-        >
+        <div>
           <StrategySelector
             selectedStrategy={selectedStrategy}
             onStrategyChange={setSelectedStrategy}
             recommendedStrategies={outcome.length > 10 ? strategies.slice(0, 3) : []}
           />
-        </motion.div>
+        </div>
       </div>
       
-      <motion.div
-        initial={{ opacity: 0, y: 10 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.3, delay: 0.4 }}
-        className="pt-4"
-      >
+      <div className="pt-4">
         <Button
           type="submit"
           disabled={isLoading || !title || !description || !outcome}
@@ -127,7 +105,7 @@ export function ProjectForm({ onSubmit, isLoading }: ProjectFormProps) {
             "Generate Project Plan"
           )}
         </Button>
-      </motion.div>
+      </div>
     </form>
   );
 } 

@@ -3,7 +3,6 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { cn } from "@/app/lib/utils";
-import { motion } from "framer-motion";
 
 const navItems = [
   { name: "Home", href: "/" },
@@ -20,14 +19,11 @@ export function Navbar() {
         <div className="flex justify-between h-16">
           <div className="flex items-center">
             <Link href="/" className="flex items-center">
-              <motion.div
-                initial={{ scale: 0.9 }}
-                animate={{ scale: 1 }}
-                whileHover={{ scale: 1.05 }}
+              <div
                 className="w-10 h-10 rounded-lg bg-orange-500 flex items-center justify-center mr-3"
               >
                 <span className="text-white font-bold text-xl">P</span>
-              </motion.div>
+              </div>
               <span className="text-xl font-bold text-gray-900 dark:text-white">
                 PmAgent<span className="text-orange-500">3</span>
               </span>
@@ -54,12 +50,8 @@ export function Navbar() {
                   </span>
                   
                   {isActive && (
-                    <motion.div
-                      layoutId="navbar-active-pill"
+                    <div
                       className="absolute inset-0 bg-orange-500 rounded-md"
-                      initial={{ opacity: 0 }}
-                      animate={{ opacity: 1 }}
-                      transition={{ duration: 0.2 }}
                     />
                   )}
                 </Link>
@@ -90,13 +82,11 @@ export function Navbar() {
             </button>
             
             <div className="ml-3">
-              <motion.button
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
+              <button
                 className="flex items-center justify-center w-8 h-8 rounded-full bg-orange-100 dark:bg-orange-900 text-orange-600 dark:text-orange-300"
               >
                 <span className="font-medium text-sm">EH</span>
-              </motion.button>
+              </button>
             </div>
           </div>
         </div>

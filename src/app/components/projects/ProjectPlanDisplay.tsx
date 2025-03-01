@@ -2,7 +2,6 @@
 
 import { ProjectPlan } from "@/app/types/project.types";
 import { getStrategyById } from "@/app/lib/strategies";
-import { motion } from "framer-motion";
 
 interface ProjectPlanDisplayProps {
   projectPlan: ProjectPlan;
@@ -11,22 +10,8 @@ interface ProjectPlanDisplayProps {
 export function ProjectPlanDisplay({ projectPlan }: ProjectPlanDisplayProps) {
   const strategy = getStrategyById(projectPlan.strategy);
   
-  const fadeIn = {
-    hidden: { opacity: 0, y: 20 },
-    visible: { 
-      opacity: 1, 
-      y: 0,
-      transition: { duration: 0.5 }
-    }
-  };
-  
   return (
-    <motion.div 
-      className="bg-white dark:bg-gray-800 rounded-xl shadow-xl overflow-hidden"
-      initial="hidden"
-      animate="visible"
-      variants={fadeIn}
-    >
+    <div className="bg-white dark:bg-gray-800 rounded-xl shadow-xl overflow-hidden">
       <div className="bg-gradient-to-r from-orange-500 to-orange-600 p-8">
         <h2 className="text-3xl font-bold text-white mb-3">{projectPlan.title}</h2>
         <p className="text-orange-100 text-lg">{projectPlan.description}</p>
@@ -38,11 +23,7 @@ export function ProjectPlanDisplay({ projectPlan }: ProjectPlanDisplayProps) {
       </div>
       
       <div className="p-8 space-y-10">
-        <motion.section
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 0.2 }}
-        >
+        <section>
           <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-4 flex items-center">
             <div className="w-8 h-8 bg-orange-100 dark:bg-orange-900 rounded-lg flex items-center justify-center mr-3">
               <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-orange-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -54,13 +35,9 @@ export function ProjectPlanDisplay({ projectPlan }: ProjectPlanDisplayProps) {
           <div className="bg-gray-50 dark:bg-gray-700/30 rounded-lg p-6">
             <p className="text-gray-700 dark:text-gray-300 leading-relaxed">{projectPlan.overview}</p>
           </div>
-        </motion.section>
+        </section>
         
-        <motion.section
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 0.3 }}
-        >
+        <section>
           <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-4 flex items-center">
             <div className="w-8 h-8 bg-orange-100 dark:bg-orange-900 rounded-lg flex items-center justify-center mr-3">
               <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-orange-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -71,27 +48,20 @@ export function ProjectPlanDisplay({ projectPlan }: ProjectPlanDisplayProps) {
           </h3>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             {projectPlan.objectives.map((objective, index) => (
-              <motion.div 
+              <div 
                 key={index} 
                 className="bg-gray-50 dark:bg-gray-700/30 rounded-lg p-5 flex"
-                initial={{ opacity: 0, x: -20 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ delay: 0.3 + index * 0.1 }}
               >
                 <div className="w-8 h-8 bg-orange-100 dark:bg-orange-900 rounded-full flex-shrink-0 flex items-center justify-center mr-4">
                   <span className="text-orange-600 dark:text-orange-400 font-medium">{index + 1}</span>
                 </div>
                 <p className="text-gray-700 dark:text-gray-300">{objective}</p>
-              </motion.div>
+              </div>
             ))}
           </div>
-        </motion.section>
+        </section>
         
-        <motion.section
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 0.4 }}
-        >
+        <section>
           <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-4 flex items-center">
             <div className="w-8 h-8 bg-orange-100 dark:bg-orange-900 rounded-lg flex items-center justify-center mr-3">
               <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-orange-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -102,12 +72,9 @@ export function ProjectPlanDisplay({ projectPlan }: ProjectPlanDisplayProps) {
           </h3>
           <div className="space-y-4">
             {projectPlan.keyMilestones.map((milestone, index) => (
-              <motion.div 
+              <div 
                 key={index} 
                 className="border-l-4 border-orange-500 pl-6 py-4 relative"
-                initial={{ opacity: 0, x: -20 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ delay: 0.4 + index * 0.1 }}
               >
                 <div className="absolute -left-3 top-4 w-6 h-6 bg-orange-500 rounded-full"></div>
                 <h4 className="font-bold text-gray-900 dark:text-white text-lg">{milestone.title}</h4>
@@ -118,16 +85,12 @@ export function ProjectPlanDisplay({ projectPlan }: ProjectPlanDisplayProps) {
                   </svg>
                   {milestone.estimatedDuration}
                 </div>
-              </motion.div>
+              </div>
             ))}
           </div>
-        </motion.section>
+        </section>
         
-        <motion.section
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 0.5 }}
-        >
+        <section>
           <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-4 flex items-center">
             <div className="w-8 h-8 bg-orange-100 dark:bg-orange-900 rounded-lg flex items-center justify-center mr-3">
               <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-orange-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -138,12 +101,9 @@ export function ProjectPlanDisplay({ projectPlan }: ProjectPlanDisplayProps) {
           </h3>
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
             {projectPlan.resources.map((resource, index) => (
-              <motion.div 
+              <div 
                 key={index} 
                 className="bg-gray-50 dark:bg-gray-700/30 rounded-lg p-4 flex items-center"
-                initial={{ opacity: 0, y: 10 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.5 + index * 0.05 }}
               >
                 <div className="w-8 h-8 bg-orange-100 dark:bg-orange-900 rounded-full flex-shrink-0 flex items-center justify-center mr-3">
                   <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 text-orange-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -151,16 +111,12 @@ export function ProjectPlanDisplay({ projectPlan }: ProjectPlanDisplayProps) {
                   </svg>
                 </div>
                 <p className="text-gray-700 dark:text-gray-300">{resource}</p>
-              </motion.div>
+              </div>
             ))}
           </div>
-        </motion.section>
+        </section>
         
-        <motion.section
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 0.6 }}
-        >
+        <section>
           <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-4 flex items-center">
             <div className="w-8 h-8 bg-orange-100 dark:bg-orange-900 rounded-lg flex items-center justify-center mr-3">
               <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-orange-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -171,12 +127,9 @@ export function ProjectPlanDisplay({ projectPlan }: ProjectPlanDisplayProps) {
           </h3>
           <div className="space-y-4">
             {projectPlan.risks.map((risk, index) => (
-              <motion.div 
+              <div 
                 key={index} 
                 className="bg-gray-50 dark:bg-gray-700/30 rounded-lg overflow-hidden"
-                initial={{ opacity: 0, y: 10 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.6 + index * 0.1 }}
               >
                 <div className="p-5">
                   <div className="flex justify-between items-start">
@@ -208,16 +161,12 @@ export function ProjectPlanDisplay({ projectPlan }: ProjectPlanDisplayProps) {
                     </p>
                   </div>
                 </div>
-              </motion.div>
+              </div>
             ))}
           </div>
-        </motion.section>
+        </section>
         
-        <motion.section
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 0.7 }}
-        >
+        <section>
           <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-4 flex items-center">
             <div className="w-8 h-8 bg-orange-100 dark:bg-orange-900 rounded-lg flex items-center justify-center mr-3">
               <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-orange-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -228,12 +177,9 @@ export function ProjectPlanDisplay({ projectPlan }: ProjectPlanDisplayProps) {
           </h3>
           <div className="space-y-8">
             {projectPlan.standardOperatingProcedures.map((procedure, index) => (
-              <motion.div 
+              <div 
                 key={index} 
                 className="bg-gray-50 dark:bg-gray-700/30 rounded-lg overflow-hidden"
-                initial={{ opacity: 0, y: 10 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.7 + index * 0.1 }}
               >
                 <div className="bg-orange-500 px-5 py-3">
                   <h4 className="font-medium text-white">{procedure.title}</h4>
@@ -250,16 +196,12 @@ export function ProjectPlanDisplay({ projectPlan }: ProjectPlanDisplayProps) {
                     ))}
                   </ol>
                 </div>
-              </motion.div>
+              </div>
             ))}
           </div>
-        </motion.section>
+        </section>
         
-        <motion.section
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 0.8 }}
-        >
+        <section>
           <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-4 flex items-center">
             <div className="w-8 h-8 bg-orange-100 dark:bg-orange-900 rounded-lg flex items-center justify-center mr-3">
               <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-orange-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -271,12 +213,9 @@ export function ProjectPlanDisplay({ projectPlan }: ProjectPlanDisplayProps) {
           <div className="bg-gray-50 dark:bg-gray-700/30 rounded-lg p-6">
             <ul className="space-y-4">
               {projectPlan.recommendations.map((recommendation, index) => (
-                <motion.li 
+                <li 
                   key={index} 
                   className="flex"
-                  initial={{ opacity: 0, x: -10 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ delay: 0.8 + index * 0.1 }}
                 >
                   <div className="w-6 h-6 bg-orange-100 dark:bg-orange-900 rounded-full flex-shrink-0 flex items-center justify-center mr-3 mt-0.5">
                     <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 text-orange-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -284,12 +223,12 @@ export function ProjectPlanDisplay({ projectPlan }: ProjectPlanDisplayProps) {
                     </svg>
                   </div>
                   <p className="text-gray-700 dark:text-gray-300">{recommendation}</p>
-                </motion.li>
+                </li>
               ))}
             </ul>
           </div>
-        </motion.section>
+        </section>
       </div>
-    </motion.div>
+    </div>
   );
 } 
