@@ -4,7 +4,9 @@ import { useState } from "react";
 import { Button } from "@/app/components/ui/button";
 import { strategies } from "@/app/lib/strategies";
 import { ProjectInput, StrategyType } from "@/app/types/project.types";
-import { StrategySelector } from "./StrategySelector";
+import { StrategySelector } from "@/app/components/projects/StrategySelector";
+import { FileUpload } from "@/app/components/ui/file-upload";
+import { FileText, X } from "lucide-react";
 
 interface ProjectFormProps {
   onSubmit: (projectInput: ProjectInput) => void;
@@ -16,6 +18,7 @@ export function ProjectForm({ onSubmit, isLoading }: ProjectFormProps) {
   const [description, setDescription] = useState("");
   const [outcome, setOutcome] = useState("");
   const [selectedStrategy, setSelectedStrategy] = useState<StrategyType>("agile");
+  const [planSetFiles, setPlanSetFiles] = useState<File[]>([]);
   
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -25,9 +28,24 @@ export function ProjectForm({ onSubmit, isLoading }: ProjectFormProps) {
       description,
       outcome,
       selectedStrategy,
+      planSetFiles,
     };
     
     onSubmit(projectInput);
+  };
+  
+  const handleFileSelect = (file: File) => {
+    setPlanSetFiles(prev => [...prev, file]);
+  };
+  
+  const handleRemoveFile = (index: number) => {
+    setPlanSetFiles(prev => prev.filter((_, i) => i !== index));
+  };
+  
+  const formatFileSize = (bytes: number): string => {
+    if (bytes < 1024) return bytes + ' bytes';
+    if (bytes < 1024 * 1024) return (bytes / 1024).toFixed(1) + ' KB';
+    return (bytes / (1024 * 1024)).toFixed(1) + ' MB';
   };
   
   return (
@@ -84,6 +102,54 @@ export function ProjectForm({ onSubmit, isLoading }: ProjectFormProps) {
             onStrategyChange={setSelectedStrategy}
             recommendedStrategies={outcome.length > 10 ? strategies.slice(0, 3) : []}
           />
+        </div>
+        
+        <div className="border-t pt-6">
+          <h3 className="text-lg font-medium text-gray-900 dark:text-white mb-4">
+            Upload Plan Sets (Optional)
+          </h3>
+          <p className="text-sm text-gray-600 dark:text-gray-400 mb-4">
+            Upload PDF plan sets to analyze equipment and generate a bill of materials
+          </p>
+          
+          <FileUpload
+            onFileSelect={handleFileSelect}
+            accept=".pdf,application/pdf"
+            label="Upload Plan Set PDF"
+            buttonText="Select PDF"
+            maxSizeMB={20}
+            allowedFileTypes={["application/pdf"]}
+          />
+          
+          {planSetFiles.length > 0 && (
+            <div className="mt-4 space-y-2">
+              <h4 className="text-sm font-medium text-gray-700 dark:text-gray-300">
+                Selected Files ({planSetFiles.length})
+              </h4>
+              {planSetFiles.map((file, index) => (
+                <div key={index} className="flex items-center justify-between p-3 border rounded-md">
+                  <div className="flex items-center gap-3">
+                    <FileText className="h-5 w-5 text-blue-500" />
+                    <div>
+                      <div className="font-medium">{file.name}</div>
+                      <div className="text-xs text-muted-foreground">
+                        {formatFileSize(file.size)}
+                      </div>
+                    </div>
+                  </div>
+                  <Button
+                    type="button"
+                    variant="ghost"
+                    size="sm"
+                    onClick={() => handleRemoveFile(index)}
+                    className="text-gray-500 hover:text-red-500"
+                  >
+                    <X className="h-4 w-4" />
+                  </Button>
+                </div>
+              ))}
+            </div>
+          )}
         </div>
       </div>
       

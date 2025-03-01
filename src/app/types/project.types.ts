@@ -14,6 +14,7 @@ export interface ProjectInput {
   description: string;
   outcome: string;
   selectedStrategy: StrategyType;
+  planSetFiles?: File[];
 }
 
 export interface ResearchResult {
@@ -31,6 +32,24 @@ export interface StrategyOption {
   description: string;
   bestFor: string[];
   notRecommendedFor: string[];
+}
+
+export interface EquipmentItem {
+  id: string;
+  name: string;
+  manufacturer: string;
+  model?: string;
+  quantity: number;
+  specifications?: Record<string, string>;
+  installationUrl?: string;
+}
+
+export interface BillOfMaterials {
+  id: string;
+  items: EquipmentItem[];
+  totalCost?: number;
+  createdAt: Date;
+  updatedAt: Date;
 }
 
 export interface ProjectPlan {
@@ -56,4 +75,31 @@ export interface ProjectPlan {
     steps: string[];
   }>;
   recommendations: string[];
+  equipment?: EquipmentItem[];
+  billOfMaterials?: BillOfMaterials;
+}
+
+export interface ProjectAttachment {
+  id: string;
+  name: string;
+  url: string;
+  type: 'pdf' | 'image' | 'other';
+  size: number;
+  createdAt: Date;
+  analyzed?: boolean;
+  extractedEquipment?: EquipmentItem[];
+}
+
+export interface Project {
+  id: string;
+  title: string;
+  description: string;
+  desiredOutcome: string;
+  strategy: StrategyType;
+  createdAt: Date;
+  updatedAt: Date;
+  plan?: ProjectPlan;
+  attachments: ProjectAttachment[];
+  equipment?: EquipmentItem[];
+  billOfMaterials?: BillOfMaterials;
 } 

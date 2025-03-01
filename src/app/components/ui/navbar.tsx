@@ -8,6 +8,7 @@ const navItems = [
   { name: "Home", href: "/" },
   { name: "Projects", href: "/projects" },
   { name: "Tasks", href: "/tasks" },
+  { name: "Solar", href: "/solar" },
 ];
 
 export function Navbar() {
