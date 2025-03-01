@@ -1,22 +1,26 @@
 # PmAgent3
 
-A modern Next.js application built with the App Router, TypeScript, Tailwind CSS, and shadcn/ui components.
+A modern project management platform for creating strategic plans, standard operating procedures, and managing tasks.
 
 ## Features
 
+- **Project Planning**: Generate comprehensive project plans with objectives, milestones, resources, and standard operating procedures
+- **AI-Powered Research**: Utilizes Perplexity API for deep research on project topics
+- **Strategic Planning**: Claude AI generates tailored project plans based on research and user input
+- **Multiple Strategy Options**: Choose from various project management methodologies (Agile, Waterfall, Lean, etc.)
+- **Task Management**: Track and manage tasks with priority and status tracking
 - **Next.js App Router**: Modern routing system with server components
 - **TypeScript**: Type-safe development experience
 - **Tailwind CSS**: Utility-first CSS framework
 - **shadcn/ui**: High-quality UI components
-- **Zod**: Runtime type validation
-- **Jotai/Zustand**: State management
-- **React Query**: Server-state synchronization
 
 ## Getting Started
 
 ### Prerequisites
 
 - Node.js 18.17 or later
+- Perplexity API key (for research functionality)
+- Claude API key (for plan generation)
 
 ### Installation
 
@@ -31,12 +35,16 @@ A modern Next.js application built with the App Router, TypeScript, Tailwind CSS
    npm install
    ```
 
-3. Run the development server:
+3. Set up environment variables:
+   - Copy `.env.local.example` to `.env.local`
+   - Add your API keys to `.env.local`
+
+4. Run the development server:
    ```bash
    npm run dev
    ```
 
-4. Open [http://localhost:3000](http://localhost:3000) in your browser to see the result.
+5. Open [http://localhost:3000](http://localhost:3000) in your browser to see the result.
 
 ## Project Structure
 
@@ -44,14 +52,22 @@ A modern Next.js application built with the App Router, TypeScript, Tailwind CSS
 pmagent3/
 ├── src/
 │   ├── app/
-│   │   ├── components/  # Reusable UI components
-│   │   ├── lib/         # Utility functions and helpers
-│   │   ├── styles/      # Global styles and CSS modules
-│   │   ├── types/       # TypeScript type definitions
-│   │   ├── layout.tsx   # Root layout component
-│   │   ├── page.tsx     # Home page component
-│   │   └── globals.css  # Global CSS
-├── public/              # Static assets
+│   │   ├── components/
+│   │   │   ├── projects/  # Project management components
+│   │   │   ├── tasks/     # Task management components
+│   │   │   └── ui/        # Reusable UI components
+│   │   ├── lib/
+│   │   │   ├── api/       # API integrations (Perplexity, Claude)
+│   │   │   ├── schemas/   # Zod validation schemas
+│   │   │   └── utils.ts   # Utility functions
+│   │   ├── projects/      # Project management pages
+│   │   ├── tasks/         # Task management pages
+│   │   ├── types/         # TypeScript type definitions
+│   │   ├── layout.tsx     # Root layout component
+│   │   ├── page.tsx       # Home page component
+│   │   └── globals.css    # Global CSS
+├── public/                # Static assets
+├── .env.local.example     # Example environment variables
 ├── .gitignore
 ├── next.config.ts
 ├── package.json
@@ -67,6 +83,14 @@ pmagent3/
 - Implement Zod for runtime type validation
 - Use Tailwind CSS for styling
 - Follow the Next.js App Router conventions
+
+## API Integrations
+
+### Perplexity API
+Used for deep research on project topics to gather relevant information for project planning.
+
+### Claude API
+Used to generate comprehensive project plans based on research results and user input.
 
 ## Learn More
 
