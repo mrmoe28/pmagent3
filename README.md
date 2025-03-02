@@ -58,6 +58,45 @@ yarn dev
 
 4. Open [http://localhost:3000](http://localhost:3000) in your browser to see the application
 
+## Deployment on Vercel
+
+This project is optimized for deployment on Vercel, the platform created by the team behind Next.js.
+
+### Deploying to Vercel
+
+1. Create a Vercel account at [vercel.com](https://vercel.com) if you don't have one
+
+2. Install the Vercel CLI:
+```bash
+npm install -g vercel
+```
+
+3. Login to Vercel:
+```bash
+vercel login
+```
+
+4. Deploy the project:
+```bash
+vercel
+```
+
+5. For production deployment:
+```bash
+vercel --prod
+```
+
+### Environment Variables
+
+Make sure to set up the following environment variables in your Vercel project settings:
+
+- `PERPLEXITY_API_KEY`: Your Perplexity API key
+- `CLAUDE_API_KEY`: Your Claude API key
+- `PERPLEXITY_API_URL`: Perplexity API endpoint
+- `CLAUDE_API_URL`: Claude API endpoint
+- `NEXT_PUBLIC_APP_URL`: Your deployed app URL
+- `NEXT_PUBLIC_APP_NAME`: Project Management Agent
+
 ## Project Structure
 
 - `src/app`: Main application code
